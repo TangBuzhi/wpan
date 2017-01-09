@@ -34,20 +34,17 @@
     <string name="btn_random">随机</string>
 
     <!--侧滑菜单栏-->
-    <string name="security_rank">安全等级</string>
-    <string name="my_assets">我的资产：</string>
-    <string name="my_assets_num">%s 元</string>
-    <string name="my_grade">我的积分：</string>
-    <string name="my_grade_num">%s 分</string>
-    <array name="drawer_setting">
-        <item>我的关注</item>
-        <item>我的推单</item>
-        <item>我的晒单</item>
-        <item>交易明细</item>
-        <item>意见反馈</item>
-        <item>产品评分</item>
-        <item>关注我们</item>
-    </array>
+    <string name="my_assets">我的资产</string>
+    <string name="my_assets_num">%s元</string>
+    <string name="my_grade">我的积分</string>
+    <string name="my_grade_num">%s分</string>
+    <string name="my_attention">我的关注</string>
+    <string name="my_push_bill">我的推单</string>
+    <string name="my_share_bill">我的晒单</string>
+    <string name="exchange_detail">交易明细</string>
+    <string name="comment_feedback">意见反馈</string>
+    <string name="product_grade">产品评分</string>
+    <string name="focus_us">关注我们</string>
 
     <!--首页-->
     <string name="today_hot">今日头条</string>

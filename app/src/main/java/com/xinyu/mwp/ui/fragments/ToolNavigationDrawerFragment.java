@@ -1,26 +1,20 @@
 package com.xinyu.mwp.ui.fragments;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xinyu.mwp.R;
-import com.xinyu.mwp.base.BaseAdapter;
 import com.xinyu.mwp.base.BaseFragment;
-import com.xinyu.mwp.bean.DrawerSettingBean;
 import com.xinyu.mwp.ui.activities.LogonActivity;
-import com.xinyu.mwp.ui.adapter.DrawerSettingAdapter;
-import com.xinyu.mwp.utils.SpaceItemDecoration;
-import com.xinyu.mwp.utils.ToastUtil;
+import com.xinyu.mwp.ui.activities.RegisterActivity;
 import com.xinyu.mwp.view.CircleImageView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,17 +31,34 @@ public class ToolNavigationDrawerFragment extends BaseFragment {
     TextView mAssets;
     @BindView(R.id.tv_grade)
     TextView mGrade;
-    @BindView(R.id.rcv_drawer_list)
-    RecyclerView mDrawerList;
     @BindView(R.id.view_head)
-    CircleImageView viewHead;
-
-
-    private int[] settingImgs = new int[]{R.mipmap.ic_drawer_attention, R.mipmap.ic_drawer_push_bill, R.mipmap.ic_drawer_share_bill,
-            R.mipmap.ic_drawer_exchange_detail, R.mipmap.ic_drawer_comments, R.mipmap.ic_drawer_products_grade, R.mipmap.ic_drawer_focus};
-    private DrawerSettingAdapter mSettingAdapter;
-    private List<String> mSettings;
-    private List<DrawerSettingBean> mDatas;
+    CircleImageView mViewHead;
+    @BindView(R.id.tv_personal_name)
+    TextView mTvPersonalName;
+    @BindView(R.id.tv_personal_login)
+    TextView mTvPersonalLogin;
+    @BindView(R.id.tv_personal_register)
+    TextView mTvPersonalRegister;
+    @BindView(R.id.ll_btn)
+    LinearLayout mLlBtn;
+    @BindView(R.id.ll_personal_assets)
+    LinearLayout mLlPersonalAssets;
+    @BindView(R.id.ll_personal_grade)
+    LinearLayout mLlPersonalGrade;
+    @BindView(R.id.tv_drawer_my_attention)
+    TextView mTvDrawerMyAttention;
+    @BindView(R.id.tv_drawer_my_push_bill)
+    TextView mTvDrawerMyPushBill;
+    @BindView(R.id.tv_drawer_my_share_bill)
+    TextView mTvDrawerMyShareBill;
+    @BindView(R.id.tv_drawer_exchange_detail)
+    TextView mTvDrawerExchangeDetail;
+    @BindView(R.id.tv_drawer_comment_feedback)
+    TextView mTvDrawerCommentFeedback;
+    @BindView(R.id.tv_drawer_product_grade)
+    TextView mTvDrawerProductGrade;
+    @BindView(R.id.tv_drawer_focus_us)
+    TextView mTvDrawerFocusUs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,48 +73,56 @@ public class ToolNavigationDrawerFragment extends BaseFragment {
     @Override
     public void initView() {
         /**
-         * 侧滑菜单栏
+         * 我的资产
          */
-        mAssets.setText(String.format(getString(R.string.my_assets_num), "￥16202.00"));
-        mGrade.setText(String.format(getString(R.string.my_grade_num), "123"));
-        mDatas = new ArrayList<>();
-        mSettings = Arrays.asList(getResources().getStringArray(R.array.drawer_setting));
-        int size = mSettings.size();
-        for (int i = 0; i < size; i++) {
-            DrawerSettingBean settingBean = new DrawerSettingBean();
-            settingBean.setIcon(settingImgs[i]);
-            settingBean.setText(mSettings.get(i));
-            mDatas.add(settingBean);
-        }
-        mDrawerList.setLayoutManager(new LinearLayoutManager(context));
-        mDrawerList.setHasFixedSize(true);
-        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.space);
-        mDrawerList.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
-        mSettingAdapter = new DrawerSettingAdapter(context, mDatas, R.layout.item_drawer_setting);
-        mDrawerList.setAdapter(mSettingAdapter);
+        String assets = String.format(getString(R.string.my_assets_num), "16202.00");
+        SpannableString spanAssets = new SpannableString(assets);
+        spanAssets.setSpan(new RelativeSizeSpan(0.56f), assets.length() - 1, assets.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        mAssets.setText(spanAssets);
+        /**
+         * 我的积分
+         */
+        String grade = String.format(getString(R.string.my_grade_num), "235");
+        SpannableString spanGrade = new SpannableString(grade);
+        spanGrade.setSpan(new RelativeSizeSpan(0.56f), grade.length() - 1, grade.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        mGrade.setText(spanGrade);
     }
 
     @Override
     public void initListener() {
-        mSettingAdapter.setOnItemClickListener(new BaseAdapter.onItemClickListener() {
-            @Override
-            public void onItemClick(View itemView, int position) {
-                // TODO: 2017/1/5 跳转到详情界面待定。。。
-                ToastUtil.showToast(mSettings.get(position), context);
-                if (activity instanceof menuItemClickListener) {
-                    ((menuItemClickListener) activity).menuItemClick(position, mDatas.get(position).getText());
-                }
-            }
 
-            @Override
-            public void onItemLongClick(View itemView, int position) {
-            }
-        });
     }
 
-    @OnClick(R.id.view_head)
-    public void onClick() {
-        toActivity(LogonActivity.class);  //跳转到登录界面
+    @OnClick({R.id.view_head, R.id.tv_personal_login, R.id.tv_personal_register, R.id.ll_personal_assets, R.id.ll_personal_grade, R.id.tv_drawer_my_attention, R.id.tv_drawer_my_push_bill, R.id.tv_drawer_my_share_bill, R.id.tv_drawer_exchange_detail, R.id.tv_drawer_comment_feedback, R.id.tv_drawer_product_grade, R.id.tv_drawer_focus_us})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.view_head:
+                //fall through
+            case R.id.tv_personal_login:
+                toActivity(LogonActivity.class);  //跳转到登录界面
+                break;
+            case R.id.tv_personal_register:
+                toActivity(RegisterActivity.class);
+                break;
+            case R.id.ll_personal_assets:
+                break;
+            case R.id.ll_personal_grade:
+                break;
+            case R.id.tv_drawer_my_attention:
+                break;
+            case R.id.tv_drawer_my_push_bill:
+                break;
+            case R.id.tv_drawer_my_share_bill:
+                break;
+            case R.id.tv_drawer_exchange_detail:
+                break;
+            case R.id.tv_drawer_comment_feedback:
+                break;
+            case R.id.tv_drawer_product_grade:
+                break;
+            case R.id.tv_drawer_focus_us:
+                break;
+        }
     }
 
     /**

@@ -84,4 +84,20 @@
         <item name="android:layout_marginLeft">15px</item>
     </style>
 
+    android:drawableLeft="@mipmap/ic_drawer_comments"
+    android:drawableRight="@mipmap/ic_drawer_right"
+    android:text="@string/comment_feedback"
+
+    <style name="drawer_item_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/drawer_item_height</item>
+        <item name="android:drawablePadding">@dimen/drawer_item_drawable_padding</item>
+        <item name="android:paddingLeft">@dimen/drawer_item_padding_left</item>
+        <item name="android:paddingRight">@dimen/drawer_item_padding_right</item>
+        <item name="android:textSize">@dimen/drawer_item_text_size</item>
+        <item name="android:textColor">@color/gray_3</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawableRight">@mipmap/ic_drawer_right</item>
+    </style>
+
 </resources>
