@@ -49,14 +49,15 @@ public class TraceBillActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trace_bill);
-        initToolbar(mToolBar, mToolbarTitle, getString(R.string.trace_bill));
-        mToolBar.setNavigationIcon(R.mipmap.ic_toolbar_back);
         initView();
         initListener();
     }
 
     @Override
     public void initView() {
+        initToolbar(mToolBar, mToolbarTitle, getString(R.string.trace_bill));
+        mToolBar.setNavigationIcon(R.mipmap.ic_toolbar_back);
+
         mDatas = new ArrayList<>();
         names = Arrays.asList(getResources().getStringArray(R.array.trace_bill));
         overTimes = Arrays.asList(getResources().getStringArray(R.array.trace_bill_over_time));

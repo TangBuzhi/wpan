@@ -1,7 +1,6 @@
 package com.xinyu.mwp.ui.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.xinyu.mwp.R;
-import com.xinyu.mwp.base.BaseActivity;
 import com.xinyu.mwp.base.BaseAdapter;
 import com.xinyu.mwp.base.BaseFragment;
 import com.xinyu.mwp.bean.ProductBean;
@@ -62,9 +60,8 @@ public class HomeFragment extends BaseFragment {
     private List<ProductBean> mProducts;
     private ProductAdapter mProductAdapter;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         setContentView(R.layout.fragment_home);
         initView();

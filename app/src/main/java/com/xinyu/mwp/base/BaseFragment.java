@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.xinyu.mwp.R;
 import com.xinyu.mwp.interfaces.IBaseView;
 import com.xinyu.mwp.manager.WeakHandler;
 
@@ -64,6 +65,14 @@ public class BaseFragment extends Fragment implements IBaseView {
     protected AppCompatActivity appCompatActivity;
     protected WeakHandler mHandler;
     protected String packageName;
+    /**
+     * 退出时之前的界面进入动画,可在finish();前通过改变它的值来改变动画效果
+     */
+    protected int enterAnim = R.anim.right_push_in;
+    /**
+     * 退出时该界面动画,可在finish();前通过改变它的值来改变动画效果
+     */
+    protected int exitAnim = R.anim.right_push_out;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -200,6 +209,11 @@ public class BaseFragment extends Fragment implements IBaseView {
             startActivity(new Intent(context, clazz));
         } else {
             startActivityForResult(new Intent(context, clazz), requestCode);
+        }
+        if (showAnimation) {
+            activity.overridePendingTransition(enterAnim, exitAnim);
+        } else {
+            activity.overridePendingTransition(R.anim.null_anim, R.anim.null_anim);
         }
     }
 

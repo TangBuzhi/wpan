@@ -16,7 +16,8 @@ import com.xinyu.mwp.R;
 import com.xinyu.mwp.base.BaseAdapter;
 import com.xinyu.mwp.base.BaseFragment;
 import com.xinyu.mwp.bean.HoldBillProduct;
-import com.xinyu.mwp.ui.adapter.DrawerSettingAdapter;
+import com.xinyu.mwp.ui.activities.BuyMinusActivity;
+import com.xinyu.mwp.ui.activities.BuyPlusActivity;
 import com.xinyu.mwp.ui.adapter.HoldBillAdapter;
 import com.xinyu.mwp.utils.SpaceItemDecoration;
 import com.xinyu.mwp.utils.ToastUtil;
@@ -168,11 +169,11 @@ public class ExchangeFragment extends BaseFragment {
                 break;
             case R.id.tv_exchange_buy_plus:
                 // TODO: 2017/1/8
-                ToastUtil.showToast("切换买涨。。。", context);
+                toActivity(BuyPlusActivity.class);
                 break;
             case R.id.tv_exchange_buy_minus:
                 // TODO: 2017/1/8
-                ToastUtil.showToast("切换买跌。。。", context);
+                toActivity(BuyMinusActivity.class);
                 break;
             case R.id.tv_exchange_history:
                 // TODO: 2017/1/8

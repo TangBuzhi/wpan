@@ -23,5 +23,6 @@
     <color name="bg_exchange_btn_selected">#fc6e51</color>
     <color name="fill_prograssbar_complete">#e9573f</color>
     <color name="fill_prograssbar_uncomplete">#009944</color>
+    <color name="notice_tips">#cccccc</color>
 
 </resources>
